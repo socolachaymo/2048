@@ -4,9 +4,6 @@ import pygame
 from pygame import image, transform
 
 image_size = 128
-screen_size = 512
-num_tiles_side = 4
-num_tiles_total = 16
 margin = 8
 
 numbers = [2,4,8,16,32,64,128,256,512,1024,2048]
@@ -36,5 +33,3 @@ class Numbers:
       self.image = transform.scale(self.image, (image_size - 2*margin, image_size - 2*margin))
       self.box = self.image.copy()
       self.box.fill((150,150,150))
-      self.skip = False
-
