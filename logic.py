@@ -20,6 +20,7 @@ def current_state(board):
     for i in range(4):
         for j in range(4):
             if board[i][j] == 2048:
+                print(i,j,board[i][j])
                 return 'Congratulations!'
     for i in range(4):
         for j in range(4):
@@ -38,6 +39,7 @@ def current_state(board):
     return 'Game over'
 def compress(board):
     new_board = []
+    changed = False
     for _ in range(4):
         new_board.append([0]*4)
     for i in range(4):
@@ -45,15 +47,19 @@ def compress(board):
         for j in range(4):
             if board[i][j] != 0:
                 new_board[i][pos] = board[i][j]
+                if j != pos:
+                    changed = True
                 pos += 1
-    return new_board 
+    return new_board, changed
 def merge(board):
+    changed = False
     for i in range(4):
         for j in range(3):
-            if board[i][j] == board[i][j+1]:
+            if board[i][j] == board[i][j+1] and board[i][j] != 0:
                 board[i][j] = board[i][j]*2
                 board[i][j+1] = 0
-    return board
+                changed = True
+    return board, changed
 def reverse(board):
     new_board = []
     for i in range(4):
@@ -69,22 +75,23 @@ def transpose(board):
             new_board[i].append(board[j][i])
     return new_board
 def move_left(board):
-    board = compress(board)
-    board = merge(board)
-    board = compress(board)
-    return board 
+    board, changed1 = compress(board)
+    board, changed2 = merge(board)
+    changed = changed1 or changed2
+    board, _ = compress(board)
+    return board, changed
 def move_right(board):
     board = reverse(board)
-    board = move_left(board)
+    board, changed = move_left(board)
     board = reverse(board)
-    return board
+    return board, changed
 def move_up(board):
     board = transpose(board)
-    board = move_left(board)
+    board, changed = move_left(board)
     board = transpose(board)
-    return board
+    return board, changed
 def move_down(board):
     board = transpose(board)
-    board = move_right(board)
+    board, changed = move_right(board)
     board = transpose(board)
-    return board
+    return board, changed
