@@ -13,4 +13,4 @@ This is how the game looks like:
 </p>
 
 ### Play it!
-You can download the game (2048.zip) and run the app.exe file from [Release](https://github.com/socolachaymo/2048/releases)
+You can download the game (2048.zip)from [Release](https://github.com/socolachaymo/2048/releases) and run the app.exe file
