@@ -8,7 +8,7 @@ The player win if one of the tiles has the value 2048 or lose if the grid is ful
 ### Screenshot
 This is how the game looks like:
 <p align='center'>
-<img src='images/screenshot.PNG'>
+<img src='images/screenshot.PNG'/>
 </p>
 ### Play it!
 You can download the game (2048.zip) and run the app.exe file from [Release](https://github.com/socolachaymo/2048/releases)
