@@ -26,7 +26,7 @@ tiles = tiles_change(board)
 
 running = True
 while running:
-    #to exit the game
+    moved = False
     current_events = event.get()
     for e in current_events:
         if e.type == pygame.QUIT:
@@ -34,17 +34,14 @@ while running:
         if e.type == pygame.KEYDOWN:
             if e.key == pygame.K_ESCAPE:
                 running = False
-    #the player moves the cells, update the board and determine if he loses, wins or continues the game
-    moved = False
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        board, moved = logic.move_left(board)
-    elif keys[pygame.K_RIGHT]:
-        board, moved = logic.move_right(board)
-    elif keys[pygame.K_UP]:
-        board, moved = logic.move_up(board)
-    elif keys[pygame.K_DOWN]:
-        board, moved = logic.move_down(board)
+            if e.key == pygame.K_LEFT:
+                board, moved = logic.move_left(board)
+            if e.key == pygame.K_RIGHT:
+                board, moved = logic.move_right(board)
+            if e.key == pygame.K_UP:
+                board, moved = logic.move_up(board)
+            if e.key == pygame.K_DOWN:
+                board, moved = logic.move_down(board)
 
     tiles = tiles_change(board)
 
